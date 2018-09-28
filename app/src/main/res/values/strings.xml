@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+    <string name="no_network">No data. Connect to network.</string>
+    <string name="settings">Settings</string>
+
+    <string name="settings_order_by_date_default">newest</string>
+    <string name="settings_order_by_topic_default">politics</string>
+
+    <string name="settings_order_by_date_key" translatable="false">order_by</string>
+    <string name="settings_order_by_topic_key" translatable="false">order_topic</string>
+
+    <string name="settings_order_by_date_label">Order By Date</string>
+    <string name="settings_order_by_topic_label">Order By Topic</string>
+
+    <string name="settings_order_by_newest_label">Newest</string>
+    <string name="settings_order_by_newest_value" translatable="false">newest</string>
+
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
+
+    <string name="settings_order_by_topic_label_politics">Politics</string>
+    <string name="settings_order_by_topic_label_sports">Sports</string>
+    <string name="settings_order_by_topic_label_business">Business</string>
+
+    <string name="settings_order_by_topic_value_politics" translatable="false">politics</string>
+    <string name="settings_order_by_topic_value_sports" translatable="false">sport</string>
+    <string name="settings_order_by_topic_value_business" translatable="false">business</string>
+    <string name="bad_url_string">Bad url</string>
+    <string name="failed_http_message">Problem making the HTTP request.</string>
+    <string name="error_message_json">Problem retrieving the earthquake JSON results.</string>
+    <string name="error_response_code">Error ResponseCode</string>
+
+</resources>
