@@ -63,9 +63,8 @@ public final class QueryUtils {
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setReadTimeout(1000);
-            httpURLConnection.setConnectTimeout(15000);
+            httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.connect();
-
             if (httpURLConnection.getResponseCode() == 200) {
                 inputStream = httpURLConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
@@ -90,7 +89,7 @@ public final class QueryUtils {
             return null;
         }
 
-        List<NewsArticle> newsArticleslist = new ArrayList<>();
+        List<NewsArticle> newsArticleList = new ArrayList<>();
 
         try {
 
@@ -109,32 +108,34 @@ public final class QueryUtils {
                 String date = currentArticle.getString("webPublicationDate");
 
                 JSONArray tags = currentArticle.optJSONArray("tags");
+                JSONObject thumbnail = currentArticle.getJSONObject("fields");
+                String image = thumbnail.getString("thumbnail");
+
                 String author = null;
                 if (tags.length() == 0) {
                     NewsArticle newsArticleWithoutAuthor = new NewsArticle(headline, sectionName, url, date);
-                    newsArticleslist.add(newsArticleWithoutAuthor);
+                    newsArticleList.add(newsArticleWithoutAuthor);
                 } else {
                     JSONObject jsonAuthor = tags.optJSONObject(0);
                     author = jsonAuthor.optString("webTitle");
 
                     if (author == null) {
                         NewsArticle newsArticleWithoutAuthor = new NewsArticle(headline, sectionName, url, date);
-                        newsArticleslist.add(newsArticleWithoutAuthor);
+                        newsArticleList.add(newsArticleWithoutAuthor);
                     } else {
-                        NewsArticle newsArticle = new NewsArticle(headline, sectionName, url, date, author);
-                        newsArticleslist.add(newsArticle);
+                        NewsArticle newsArticle = new NewsArticle(headline, sectionName, url, date, author, image);
+                        newsArticleList.add(newsArticle);
                     }
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return newsArticleslist;
+        return newsArticleList;
     }
 
     public static List<NewsArticle> getJsonData(String requestUrl) {
         URL url = createURL(requestUrl);
-
         String jsonResponse = null;
 
         try {

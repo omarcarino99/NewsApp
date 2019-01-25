@@ -30,4 +30,7 @@
     <string name="error_message_json">Problem retrieving the earthquake JSON results.</string>
     <string name="error_response_code">Error ResponseCode</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

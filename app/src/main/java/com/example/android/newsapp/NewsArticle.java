@@ -2,9 +2,6 @@ package com.example.android.newsapp;
 
 import java.util.Date;
 
-/**
- * Created by ocarino99 on 7/23/18.
- */
 
 public class NewsArticle {
 
@@ -13,6 +10,7 @@ public class NewsArticle {
     private String url;
     private String mDate;
     private String author;
+    private String storyImage;
 
     public NewsArticle() {
     }
@@ -41,6 +39,15 @@ public class NewsArticle {
         this.url = url;
         mDate = date;
         this.author = author;
+    }
+
+    public NewsArticle(String mHeadline, String mSection, String url, String mDate, String author, String storyImage) {
+        this.mHeadline = mHeadline;
+        this.mSection = mSection;
+        this.url = url;
+        this.mDate = mDate;
+        this.author = author;
+        this.storyImage = storyImage;
     }
 
     public String getHeadline() {
@@ -81,6 +88,14 @@ public class NewsArticle {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getStoryImage() {
+        return storyImage;
+    }
+
+    public void setStoryImage(String storyImage) {
+        this.storyImage = storyImage;
     }
 
     @Override

@@ -4,12 +4,6 @@
     android:title="@string/settings">
 
     <ListPreference
-        android:defaultValue="@string/settings_order_by_topic_default"
-        android:entries="@array/settings_order_by_topic_labels"
-        android:entryValues="@array/settings_order_by_topic_value"
-        android:key="@string/settings_order_by_topic_key"
-        android:title="@string/settings_order_by_topic_label"/>
-    <ListPreference
         android:defaultValue="@string/settings_order_by_date_default"
         android:entries="@array/settings_order_by_date_labels"
         android:entryValues="@array/settings_order_by_date_value"

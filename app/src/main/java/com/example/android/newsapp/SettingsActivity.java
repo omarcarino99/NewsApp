@@ -26,8 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
             Preference datePref = findPreference(getString(R.string.settings_order_by_date_key));
             bindPrefSummary(datePref);
 
-            Preference topicPref = findPreference(getString(R.string.settings_order_by_topic_key));
-            bindPrefSummary(topicPref);
         }
 
         private void bindPrefSummary(Preference preference) {
