@@ -23,6 +23,9 @@ import static com.example.android.newsapp.MainActivity.LOG_TAG;
 
 public final class QueryUtils {
 
+    private static final String LOG_MESSAGE = "MISSING_FIELD";
+    private String image;
+
     private QueryUtils() {
     }
 
@@ -108,8 +111,15 @@ public final class QueryUtils {
                 String date = currentArticle.getString("webPublicationDate");
 
                 JSONArray tags = currentArticle.optJSONArray("tags");
-                JSONObject thumbnail = currentArticle.getJSONObject("fields");
-                String image = thumbnail.getString("thumbnail");
+                JSONObject thumbnail;
+                String  image = "";
+
+                if (currentArticle.has("fields")){
+                    thumbnail = currentArticle.getJSONObject("fields");
+                  image =  thumbnail.getString("thumbnail");
+                }else {
+                    Log.e(LOG_MESSAGE,"No thumbnail");
+                }
 
                 String author = null;
                 if (tags.length() == 0) {
