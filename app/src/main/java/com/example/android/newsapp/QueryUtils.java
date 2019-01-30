@@ -24,7 +24,6 @@ import static com.example.android.newsapp.MainActivity.LOG_TAG;
 public final class QueryUtils {
 
     private static final String LOG_MESSAGE = "MISSING_FIELD";
-    private String image;
 
     private QueryUtils() {
     }
@@ -112,11 +111,11 @@ public final class QueryUtils {
 
                 JSONArray tags = currentArticle.optJSONArray("tags");
                 JSONObject thumbnail;
-                String  image = "";
-
+                String image = "";
+                
                 if (currentArticle.has("fields")){
                     thumbnail = currentArticle.getJSONObject("fields");
-                  image =  thumbnail.getString("thumbnail");
+                    image =  thumbnail.getString("thumbnail");
                 }else {
                     Log.e(LOG_MESSAGE,"No thumbnail");
                 }
