@@ -2,6 +2,7 @@ package com.example.android.newsapp.Fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.support.annotation.Nullable;
 import android.content.SharedPreferences;
@@ -15,7 +16,10 @@ import android.app.LoaderManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.android.newsapp.Adapters.NewsArticleAdapter;
 import com.example.android.newsapp.MainActivity;
 import com.example.android.newsapp.NewsArticle;
@@ -35,6 +39,8 @@ public class BusinessFragment extends Fragment implements android.support.v4.app
     private static final int NEWSARTICLE_LOADER_ID = 1;
     public String topic;
     public  NewsArticleAdapter adapter;
+    public Uri uri;
+    public Uri.Builder uriBuilder;
 
     public BusinessFragment() {
         // Required empty public constructor
@@ -52,6 +58,17 @@ public class BusinessFragment extends Fragment implements android.support.v4.app
         ListView listView = rootview.findViewById(R.id.story_list);
         adapter = new NewsArticleAdapter(getContext(),new ArrayList<NewsArticle>());
         listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                NewsArticle newsArticle = adapter.getItem(i);
+                Uri newsUrl = Uri.parse(newsArticle.getUrl());
+                Intent intet = new Intent(Intent.ACTION_VIEW, newsUrl);
+                startActivity(intet);
+            }
+        });
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
@@ -82,13 +99,14 @@ public class BusinessFragment extends Fragment implements android.support.v4.app
         );
 
         topic = "business";
-        Uri uri = Uri.parse(URL_GUARDIAN);
-        Uri.Builder uriBuilder = uri.buildUpon();
+       uri = Uri.parse(URL_GUARDIAN);
+        uriBuilder = uri.buildUpon();
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("show-tags","contributor");
         uriBuilder.appendQueryParameter("show-fields","thumbnail");
         uriBuilder.appendQueryParameter("order-by", date);
         uriBuilder.appendQueryParameter("section", topic);
+
         uriBuilder.build();
 
         return new NewsArticleLoader(getContext(),uriBuilder.toString());
